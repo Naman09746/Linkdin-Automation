@@ -3,7 +3,7 @@ venv/
 __pycache__/
 **/*.pyc
 .DS_Store
-.planning/STATE.md
+.planning/
 .gemini/
 .agents/
 .agent/
@@ -11,3 +11,9 @@ __pycache__/
 node_modules/
 dist/
 build/
+*.png
+*.jpg
+*.jpeg
+tests/
+scripts/test_*.py
+dashboard/.streamlit/

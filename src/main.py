@@ -19,7 +19,7 @@ async def run_pipeline(limit: int = 5):
     
     # 3. Visuals
     logger.info("--- Phase 4: Generating Visuals ---")
-    VisualManager().process_drafts(limit=limit)
+    await VisualManager().process_drafts(limit=limit)
     
     logger.success("🏁 Full Loop Complete. Check your Supabase 'drafts' table for review!")
 

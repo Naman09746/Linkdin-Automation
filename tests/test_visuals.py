@@ -2,7 +2,9 @@ import pytest
 from src.core.visuals import VisualManager
 from src.core.database import db_manager
 
-def test_genuine_visual_pipeline():
+import asyncio
+
+async def test_genuine_visual_pipeline():
     manager = VisualManager()
     sb = db_manager.get_supabase()
     
@@ -23,7 +25,7 @@ def test_genuine_visual_pipeline():
     print(f"Testing visual extraction for: {signal_url}")
     
     # 2. Extract genuine visual
-    image_bytes = manager.get_genuine_visual(signal_url)
+    image_bytes = await manager.get_genuine_visual(signal_url)
     assert image_bytes is not None
     print("Successfully captured screenshot/og_image bytes.")
     
@@ -33,4 +35,4 @@ def test_genuine_visual_pipeline():
     print(f"Success! Genuine image available at: {url}")
 
 if __name__ == "__main__":
-    test_genuine_visual_pipeline()
+    asyncio.run(test_genuine_visual_pipeline())
