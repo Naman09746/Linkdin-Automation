@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     LINKEDIN_CLIENT_ID: Optional[str] = None
     LINKEDIN_CLIENT_SECRET: Optional[str] = None
     LINKEDIN_ACCESS_TOKEN: Optional[str] = None
+    TELEGRAM_BOT_TOKEN: Optional[str] = None
+    TELEGRAM_CHAT_ID: Optional[str] = None
+    DISCORD_WEBHOOK_URL: Optional[str] = None
     ENVIRONMENT: str = "development"
     LOG_LEVEL: str = "INFO"
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")

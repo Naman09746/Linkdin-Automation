@@ -55,6 +55,12 @@ Style to use: {style_desc}
             
             # Update signal status
             self.db.table("signals").update({"status": "drafted"}).eq("id", str(signal.id)).execute()
+            
+        # Trigger Notification
+        draft_count = len(res.data) * len(self.STYLES)
+        if draft_count > 0:
+            from src.core.notifier import NotificationManager
+            NotificationManager().notify_drafts_ready(draft_count)
 
     def save_draft(self, signal_id: Any, content: str, style: str):
         try:

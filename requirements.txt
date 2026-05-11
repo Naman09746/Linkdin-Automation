@@ -1,0 +1,28 @@
+# Core
+requests
+loguru
+python-dotenv
+pydantic
+pydantic-settings
+
+# Database & Storage
+supabase
+redis
+qdrant-client
+
+# Scrapers & Web
+playwright
+arxiv
+praw
+crawl4ai
+
+# AI & Image
+groq
+google-generativeai
+huggingface_hub
+Pillow
+
+# Web Dashboard & API
+fastapi
+uvicorn
+streamlit
