@@ -37,7 +37,8 @@ class BaseCollector:
 class HNCollector(BaseCollector):
     def __init__(self): super().__init__("hacker_news")
     def fetch(self, limit: int = 10):
-        url = f"https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage={limit}"
+        timestamp_24h_ago = int(time.time()) - 86400
+        url = f"https://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>{timestamp_24h_ago}&hitsPerPage={limit}"
         res = requests.get(url)
         if res.status_code == 200:
             for story in res.json().get("hits", []):
