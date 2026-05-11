@@ -46,14 +46,19 @@ The agent is tuned to a specific demographic:
 - **Storage:** Supabase Buckets store the generated PNG screenshots.
 - **API:** Uses LinkedIn v2023 API with a 3-step media handshake (Register -> Upload -> Post).
 
+### 5. Web Dashboard & Notifications (Phase 06)
+- **Notifier:** `src/core/notifier.py` sends Telegram/Discord alerts when new drafts are ready.
+- **Backend API:** `src/api/dashboard.py` (FastAPI) manages draft status updates.
+- **Frontend UI:** `dashboard/app.py` (Streamlit) provides a sleek review & approval interface.
+
 ---
 
 ## 🔄 The Workflow Loop
 
 | Step | Command | Action |
 | :--- | :--- | :--- |
-| **1. Generate** | `python src/main.py` | Finds news, drafts 3 variants, and takes screenshots. |
-| **2. Review** | `python scripts/approve.py` | Interactive CLI to pick your favorite draft. |
+| **1. Generate** | `python src/main.py` | Finds news, drafts variants, takes screenshots, **sends alerts**. |
+| **2. Review** | `streamlit run dashboard/app.py` | Open browser to review and approve with one click. |
 | **3. Publish** | `python src/core/publisher.py` | Sends the approved draft + macOS screenshot to LinkedIn. |
 
 ---

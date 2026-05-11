@@ -3,12 +3,12 @@
 A fully automated agent that scours the web for tech news, drafts engaging LinkedIn posts, generates cinematic visuals, and publishes them for you.
 
 ## 🛠️ System Architecture
-1.  **Signal Ingestion:** Scrapes Hacker News, ArXiv, and GitHub Trending.
+1.  **Signal Ingestion:** Scrapes Hacker News, ArXiv, and GitHub Trending (Last 24h).
 2.  **AI Routing:** Uses a free multi-LLM router (Groq, Gemini, Cerebras) for high-speed scoring and drafting.
-3.  **Drafting Engine:** Generates 3 versions of every post (PAS, HVCTA, SLA styles).
-4.  **Visual Engine:** Uses Hugging Face SDXL to generate $0-cost professional images.
-5.  **Database & Asset Management:** Powered by Supabase (Postgres + Storage).
-6.  **Human-in-the-Loop:** Approval workflow via CLI.
+3.  **Drafting Engine:** Generates posts in your specific 21yo AI/ML student persona.
+4.  **Visual Engine:** Captures genuine source screenshots wrapped in a **macOS Dark Mode frame**.
+5.  **Notifications:** Sends Telegram/Discord alerts when new drafts are ready.
+6.  **Web Dashboard:** One-click review & approval via Streamlit.
 7.  **Publishing:** Automated LinkedIn v2023 API integration.
 
 ## 🚀 Getting Started
@@ -16,30 +16,34 @@ A fully automated agent that scours the web for tech news, drafts engaging Linke
 ### 1. Installation
 ```bash
 pip install -r requirements.txt
-playwright install
+playwright install chromium
 ```
 
 ### 2. Configuration
-Fill in your API keys in `.env` (Groq, Gemini, Supabase, Hugging Face, LinkedIn).
+Fill in your API keys in `.env` (Groq, Gemini, Supabase, LinkedIn, Telegram/Discord).
 
-### 3. Run the Automation
+### 3. Run the Agent
 ```bash
 export PYTHONPATH=.
 python src/main.py --limit 3
 ```
-*This will fetch news, score them, write 3 drafts per signal, and generate images.*
+*This will fetch news, score them, write drafts, capture macOS-framed screenshots, and **send a notification to your phone**.*
 
-### 4. Review & Approve
+### 4. Review via Web Dashboard
 ```bash
-python scripts/approve.py
+# 1. Start the API
+uvicorn src.api.dashboard:app --reload
+
+# 2. Start the Dashboard (in a new terminal)
+streamlit run dashboard/app.py
 ```
-*Follow the prompt to approve a draft.*
+*Open http://localhost:8501 to review and approve your posts with one click.*
 
 ### 5. Publish to LinkedIn
 ```bash
 python src/core/publisher.py
 ```
-*Posts all approved drafts with their generated images.*
+*Posts all approved drafts with their genuine screenshots.*
 
 ## 📁 Project Structure
 - `src/main.py`: Main entry point.
